@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <img src="assets/images/manufacturer.svg" class="card-img-top" alt="add manufacturer">
+        <div class="card-body">
+          <h5 class="card-title">Add Manufacturer</h5>
+          <form (ngSubmit)="addManufacturer()" [formGroup]="form">
+            <div class="form-group  row">
+              <label class="col-form-label col-md-5" for="manufacturer">Manufacturer Name</label>
+              <div class="col-md-7">
+                <input type="text" class="form-control" id="manufacturer" formControlName="manufacturer" placeholder="Enter Manufacturer name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-7 offset-md-5">
+                <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Add Manufacturer</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>

@@ -1,0 +1,81 @@
+<div class="container">
+	<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <img src="assets/images/model.svg" class="card-img-top" alt="add model">
+        <div class="card-body">
+          <h5 class="card-title">Add Model</h5>
+          <form (ngSubmit)="addModel()" [formGroup]="form" enctype="multipart/form-data">
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group row">
+                  <label class="col-form-label col-md-4" for="model">Model Name</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="model" formControlName="name" placeholder="Enter Model name">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                  <div class="form-group row">
+                      <label class="col-form-label col-md-4" for="manufacturer">Select Manufacturer</label>
+                      <div class="col-md-8">
+                          <select class="form-control" id="manufacturer" formControlName="manufacturer">
+                            <option *ngFor="let manufacturer of manufacturers$ | async" [value]="manufacturer.id">{{manufacturer.name}}</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group  row">
+              <label class="col-form-label col-md-2" for="color">Color</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" id="color" formControlName="color" placeholder="Enter Model Color">
+              </div>
+            </div>
+            <div class="form-group  row">
+              <label class="col-form-label col-md-2" for="year">Manufacturer Year</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" id="year" formControlName="year" placeholder="Enter Manufacturer Year">
+              </div>
+            </div>
+            <div class="form-group  row">
+              <label class="col-form-label col-md-2" for="reg_num">Registration Number</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" id="reg_num" formControlName="registration_number" placeholder="Enter Registration Number">
+              </div>
+            </div>
+            <div class="form-group  row">
+              <label class="col-form-label col-md-2" for="note">Note</label>
+              <div class="col-md-10">
+                <textarea id="note" formControlName="note" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="form-group  row">
+              <label class="col-form-label col-md-2" for="count">Count</label>
+              <div class="col-md-10">
+                <input type="number" class="form-control" id="count" formControlName="count">
+              </div>
+            </div>
+            <div class="form-group  row">
+              <label class="col-form-label col-md-2" for="image1">Image 1</label>
+              <div class="col-md-10">
+                <input type="file" class="form-control" id="image1" formControlName="image1">
+              </div>
+            </div>
+            <div class="form-group  row">
+              <label class="col-form-label col-md-2" for="image2">Image 2</label>
+              <div class="col-md-10">
+                <input type="file" class="form-control" id="image2" formControlName="image2">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-10 offset-md-2">
+                <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Add Model</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>
