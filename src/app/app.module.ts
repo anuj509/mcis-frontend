@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { DataTablesModule } from 'angular-datatables';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

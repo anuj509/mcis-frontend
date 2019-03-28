@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ManufacturerService } from '../services/manufacturer.service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { ModelService } from '../services/model.service';
 @Component({
   selector: 'app-add-model',
   templateUrl: './add-model.component.html',
@@ -12,9 +13,12 @@ export class AddModelComponent implements OnInit {
 
   form:FormGroup;
   manufacturers$: Observable<any[]>;
+  request = new FormData();
   constructor(
     private fb:FormBuilder,
+    private cd: ChangeDetectorRef,
     private manufacturerService: ManufacturerService,
+    private modelService: ModelService,
     private toastr: ToastrService
   ) {
     this.form = this.fb.group({
@@ -36,8 +40,29 @@ export class AddModelComponent implements OnInit {
 
   addModel(){
     let data = this.form.value;
-    console.log(data);
     
+    this.request.append('name',data.name);
+    this.request.append('manufacturer',data.manufacturer);
+    this.request.append('color',data.color);
+    this.request.append('year',data.year);
+    this.request.append('registration_number',data.registration_number);
+    this.request.append('note',data.note);
+    this.request.append('count',data.count);
+    console.log(data);
+    this.modelService.addModel(this.request).subscribe(response =>{
+      if(response.status=="success"){
+        this.toastr.success(response.message, 'Success', {timeOut: 5000});
+      }else{
+        this.toastr.error(response.message, 'Error', {timeOut: 5000})
+      }
+    });
+  }
+
+  onFileChange(event,image_index) {
+    if(event.target.files && event.target.files.length) {
+      let file = event.target.files;
+      this.request.append(image_index,file[0]);
+    }
   }
 
 }

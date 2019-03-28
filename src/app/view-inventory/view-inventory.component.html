@@ -1,3 +1,90 @@
-<p>
-  view-inventory works!
-</p>
+<div class="container">
+	<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+              <tr>
+                <th>Sr. No</th>
+                <th>Manufacturer name</th>
+                <th>Model name</th>
+                <th>Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of inventoryRows;let i = index;" (click)="showModel(content,row)">
+                <td>{{i+1}}</td>
+                <td>{{ row.manufacturer_name }}</td>
+                <td>{{ row.model_name }}</td>
+                <td>{{ row.count }}</td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Model Details </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="container">
+          <div class="wrapper row">
+              <div class="preview col-md-6">
+
+                  <div class="preview-pic tab-content">
+                      <div class="tab-pane active" id="pic-1"><img src="{{modelDetails.image_url_1}}" class="img-fluid"/></div>
+                  </div>
+                  <div class="preview-pic tab-content">
+                      <div class="tab-pane active" id="pic-2"><img src="{{modelDetails.image_url_2}}" class="img-fluid"/></div>
+                  </div>
+
+              </div>
+              <div class="details col-md-6">
+                  <div class="panel panel-default text-center">
+                      <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>   Mark as Sold</div></h3>
+                      <button type="button" class="btn btn-outline-dark" (click)="modelSold(modelDetails.id)">Sold</button>
+                  </div>
+                  <div class="panel panel-default text-center">
+                      <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>   Model Name</div></h3>
+                      <hr>
+                  <h4>{{modelDetails.model_name}}</h4>
+                  </div>
+                  <div class="panel panel-default text-center">
+                      <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>   Manufacturer Name</div></h3>
+                      <hr>
+                  <h4>{{modelDetails.manufacturer_name}}</h4>
+                  </div>
+                  <div class="panel panel-default text-center">
+                      <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>   Manufacturing year</div></h3>
+                      <hr>
+                  <h4>{{modelDetails.year}}</h4>
+                  </div>
+                  <div class="panel panel-default text-center">
+                      <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>   Color</div></h3>
+                      <hr>
+                  <h4>{{modelDetails.color}}</h4>
+                  </div>
+                  <div class="panel panel-default text-center">
+                      <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>   Registration Number</div></h3>
+                      <hr>
+                  <h4>{{modelDetails.registration_number}}</h4>
+                  </div>
+                  <div class="panel panel-default text-center">
+                      <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>   Note</div></h3>
+                      <hr>
+                  <h4>{{modelDetails.note}}</h4>
+                  </div>
+               </div>   
+          </div>
+
+      </div>
+  </div>
+</ng-template>

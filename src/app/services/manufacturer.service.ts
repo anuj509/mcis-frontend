@@ -28,6 +28,7 @@ export class ManufacturerService {
     return this.http.get(GET_MANUFACTURER_URL).pipe(
       map(this.extractData));
   }
+  
   private extractData(res: Response) {
   let res_arr = Array();
   console.log(typeof res_arr);
