@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8000/api';
+const baseUrl = 'http://mcis.techontouch.com/api';
 export const environment = {
   production: true,
   addManufacturerURL: baseUrl+'/add-manufacturer',
